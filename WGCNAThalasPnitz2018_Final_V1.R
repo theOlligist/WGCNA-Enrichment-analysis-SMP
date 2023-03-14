@@ -29,9 +29,7 @@ nrow(Diatom_raw_df) # there are approx 26,000 transcripts
 #KO_total = Diatom_raw_df %>% distinct(KO) %>% nrow() #count the number of distinct KO
 # I can expect a max o ~5622
 
-#because I have filtered down this dataset to be diatoms, The subject of this dataframe is the functions themselves, not the taxa.
-#However, there is duplication in KO terms because this is still a mixed population of diatoms expressing similar genes in some cases.
-# I will aggregate the counts from each KO in each sample. This is an important step in order to assign the KO's the rownames.
+# Aggregate the counts from each KO for both diatom genera in each sample in order to assign them as rownames.
 
 #Aggregate Table
 agg_df = Diatom_raw_df %>%
@@ -56,7 +54,9 @@ agg_df[1:3, 1:16]
 #sanity check. These should be the same
 colSums(agg_df[-1]) == colSums(Diatom_raw_df[-1:-2])
 
+# Two ways to normalize the data: Rarify or transform. Chose one.
 # Normalize via rarify ----------------------------------------------------
+# note: if rarify continue at line 99
 numbers_only = agg_df[-1]
 min_reads = min(colSums(keep))
 rare = rrarefy(t(round(keep)), sub)
