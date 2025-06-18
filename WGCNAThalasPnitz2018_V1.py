@@ -90,16 +90,3 @@ ME_df = pd.DataFrame(eigengenes, index=Norm_df.columns)
 trait_df = pd.DataFrame()  # rows = samples, cols = traits
 cor_matrix = ME_df.corrwith(trait_df, axis=0)
 
-# -------------------- 8. Enrichment analysis --------------------
-# Optional with gseapy or bioservices; placeholders below
-# import gseapy as gp
-# enr = gp.enrichr(gene_list=[...], gene_sets='KEGG_2019_Human', organism='Human')
-
-# -------------------- 9. DE analysis (approximate) --------------------
-# Use statsmodels or scipy to compare groups manually; edgeR not replicated directly
-
-# -------------------- 10. Plotting (optional) --------------------
-# Example dendrogram:
-# dendrogram(linkage_matrix, labels=Norm_df.index)
-
-print("Pipeline executed (placeholder mode). Replace mock inputs with real data.")
